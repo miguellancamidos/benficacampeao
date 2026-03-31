@@ -1,0 +1,83 @@
+title: "Pratica 9 reconstrucao filogenetica"
+
+
+
+```{r}
+library(phangorn)
+ mtdna <- read.phyDat('../../data/mtDNA.fasta', format = 'fasta')
+```
+
+
+
+```{r}
+library(ape)
+library(phangorn)
+primates <- read.phyDat(system.file('extdata/trees/primates.dna',
+                                    package = 'phangorn'),
+                        format = 'interleaved')
+primates <- subset(primates,
+                   subset = names(primates)[! names(primates) %in% c('Mouse', 'Bovine')])
+as.StringSet(primates)
+```
+```{r}
+glance(mtdna)
+```
+
+#Pergunta1 e 2: pode-se confimar o numero de sequencias?
+#Sim, atraves da primeira funcao que te e dada, e depois basta escrever na consola mtdna que responde logo as duas primeiras perguntas, tanto o numero de sequencias como a longitude de caracteres, as respostas sao 42 e 16603, respetivamente
+#Pergunta 3: qual os nomes das especies? Basta escrever names(mtdna) e aparecem os nomes das especies que estao no pacote mtdna (dna mitocondrial) 
+
+
+```{r}
+distancias <- dist.ml(mtdna, model = 'F81')
+mt_nj    <- NJ(distancias)
+mt_upgma <- upgma(distancias)
+```
+
+```{r}
+class(mt_nj)
+```
+
+```{r}
+class(mt_upgma)
+```
+#Pergunta4,5
+#¿De qué clase son los objetos mt_nj y mt_upgma? Para responder a esta pergunta basta escrever class(nome do objeto)
+#Consulta la estructura de estos objetos (str(mt_nj)). para tal basta escrever str(mt_nj): que da um resultados de 4 listas que indicam: edge: que diz que estamos a trabalhar uma matriz de 81 linhas e duas colunas, de numeros inteiros;edgelenght: que seria mais ou menos a longiteude entre os ramos que mede a possibilidade de diferentes outcomes a cada base nitrogenada adicionada a sequencias mais ou menos;Tip.label: que sao os nomes das especies e nnode que sao so tipos de nodulos.Diz ainda as classes e a ordem dos objetos, neste caso do mt_nj
+#Represéntalos gráficamente (plot(mt_nj)) y consulta la ayuda de la función plot.phylo() para saber qué opciones de representación gráfica tienes.Para qué sirven las funciones add.scale.bar() y axisPhylo()
+#?plot(mt_nj)
+#add.scale.bar()
+#axisPhylo()
+
+
+
+```{r}
+plot(mt_nj, cex = 0.5)
+plot(mt_upgma, cex=0.5)
+```
+plot(mt_nj)
+add.scale.bar()
+axisPhylo()
+
+```{r}
+plot(mt_nj, cex = 0.5)
+add.scale.bar()
+axisPhylo()
+```
+
+```{r}
+plot(mt_nj, cex = 0.5)
+add.scale.bar()
+```
+
+#desta maneira podemos selecionar o trabalho das letras no grafico de maneira a que nao fique horroroso e tambem adicionare uma escala do tempo ao  eixo do grafico
+
+
+ ao perguntar is.rooted(mt_nj) podemos descobrir se cada arvore filogenetica se encontra enraizada ou nao, ja para enraizar podemos utilizar a funñao root()
+```{r}
+#| fig-width: 7
+#| fig-height: 7
+plot(mt_nj, cex = 0.5)
+nodelabels()
+```
+
