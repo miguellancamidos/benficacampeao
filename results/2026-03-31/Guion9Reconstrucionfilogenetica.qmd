@@ -1,4 +1,9 @@
-title: "Pratica 9 reconstrucao filogenetica"
+---
+title: "Reconstrução Filogenética"
+author: "TMiguel Lanña"
+format: html
+bibliography: "../../doc/references.bib"
+---
 
 
 
