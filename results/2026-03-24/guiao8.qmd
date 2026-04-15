@@ -1,0 +1,114 @@
+###Titulo: aula 8
+## Descargar sudo apt install ncbi-blast+
+##Además, usaremos el paquete de R Biostrings, que en caso de no tener instalado, podéis instalar con BiocManager (no con install.packages()!):    BiocManager::install('Biostrings')
+## despues ir a uniprot para descargar los datos de las bacterias endossimbiontes
+
+##exercicio 1
+##  depois temos de descomprimir os ficheiros com extrair aqui e por na pasta de data e mudar o nome para o genero.fa
+##depois copiar e colar aquilo que esta no guiao para que depois o bash extraia os dados e depois mudar o nome dos generos na mesma formula para que faca o mesmo a outra especie
+```{bash}
+if [ ! -e ../../data/buchnera.paa ]; then
+   # Creamos un archivo para enmascarar zonas de baja complejidad:
+   if [ ! -e buchnera_seg.asnb ]; then
+      segmasker -in ../../data/buchnera.fa \
+                -infmt fasta \
+                -parse_seqids \
+                -outfmt maskinfo_asn1_bin \
+                -out ../../data/buchnera_seg.asnb
+   fi
+   # Y indexamos el archivo FASTA para BLAST:
+   makeblastdb  -in ../../data/buchnera.fa \
+                -input_type fasta \
+                -dbtype prot \
+                -parse_seqids \
+                -mask_data ../../data/buchnera_seg.asnb \
+                -out ../../data/buchnera \
+                -title "Proteoma de Buchnera"
+fi
+# Hay que repetir todo esto para Blochmannia.
+```
+
+```{bash}
+if [ ! -e ../../data/blochmannia.paa ]; then
+   # Creamos un archivo para enmascarar zonas de baja complejidad:
+   if [ ! -e blochmannia_seg.asnb ]; then
+      segmasker -in ../../data/blochmannia.fa \
+                -infmt fasta \
+                -parse_seqids \
+                -outfmt maskinfo_asn1_bin \
+                -out ../../data/blochamnnia_seg.asnb
+   fi
+   # Y indexamos el archivo FASTA para BLAST:
+   makeblastdb  -in ../../data/blochmannia.fa  \
+                -input_type fasta \
+                -dbtype prot \
+                -parse_seqids \
+                -mask_data ../../data/blochmannia_seg.asnb \
+                -out ../../data/blochmannia \
+                -title "Proteoma de blochmannia"
+fi
+# Hay que repetir todo esto para Blochmannia.
+```
+##segunda parte do exercicio
+##aqui vai a bacteria bloch a procura de proteinas que possuam funcao semelhante a alguma que exista na buchanera
+```{bash}
+blastp -query ../../data/buchnera.fa \
+       -db ../../data/blochmannia \
+       -out buc2blo.txt \
+       -outfmt '6 qseqid sseqid qlen slen length evalue bitscore' \
+       -evalue 0.001 \
+       -max_target_seqs 1
+```
+###aqui vai a bacteria bucha a procura de proteinas que possuam funcao semelhante a alguma que exista na blochmannia, no futuro vai haver apenas uma que esteja presente nas duas listas , e essa sera a ortologa
+```{bash}
+blastp -query ../../data/blochmannia.fa \
+       -db ../../data/buchnera \
+       -out blo2buc.txt \
+       -outfmt '6 qseqid sseqid qlen slen length evalue bitscore' \
+       -evalue 0.001 \
+       -max_target_seqs 1
+```
+
+
+```{r}
+buc2blo <- read.table(
+   'buc2blo.txt',
+   col.names = c('query', 'subject', 'qlen', 'slen',
+                 'length', 'evalue', 'bitscore')
+)
+blo2buc <- read.table(
+   'blo2buc.txt',
+   col.names = c('query', 'subject', 'qlen', 'slen',
+                 'length', 'evalue', 'bitscore')
+)
+```
+## Aqui em baixo uma das respostas do stor ele basicamente criou uma funcao que ve se a resposta da primeira funcao +e igual a da segunda, porque a mais semnelhante quando vais de A a B pode nao ser a melhor quando vai de B a A. Tipo se em A tens um homem e uma mulher e em B tens uma mulher e um cao, no A comecas no homem, o mais parecido que ha em B e a mulher, mas depois se na B comecas na mulher, vais ver que o melhor match em A nao e o homem, mas sim a mulher.
+```{r}
+
+buc2blo$reverse <- blo2buc[
+   match(buc2blo$subject, blo2buc$query),
+   'subject'
+]
+coincidencias <- buc2blo[
+   buc2blo$query == buc2blo$reverse,
+   c('query', 'subject')
+]
+```
+## Exercicio 2
+
+
+```{r}
+# Como Swissprot debería estar ya descargada en `../../data`, podemos sacar
+# de ahí la secuencia de la proteína escogida:
+blastdbcmd -db ../../data/swissprot -entry P39615 -out P39615.fa
+
+# Y ahora la usamos como query en psi-blast:
+psiblast -db ../../data/swissprot \
+         -query P39615.fa \
+         -out P39615.blastout.txt \
+         -evalue 0.1 \
+         -outfmt 7 \
+         -inclusion_ethresh 0.001 \
+         -num_iterations 7 \
+         -matrix BLOSUM62
+```
