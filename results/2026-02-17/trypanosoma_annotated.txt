@@ -1,0 +1,36 @@
+Assembly Accession	Organism Name	Assembly Release Date	Assembly Level	Assembly Stats ATGC Count	Annotation Count Gene Total	Assembly Type	Assembly Status
+GCF_000002445.2	Trypanosoma brucei brucei TREU927	2005-12-14	Chromosome	27984184	10221	haploid	current
+GCA_000002445.1	Trypanosoma brucei brucei TREU927	2005-12-14	Chromosome	27984184	10234	haploid	current
+GCA_003543875.1	Trypanosoma brucei equiperdum	2018-09-11	Chromosome	26988976	10293	haploid	current
+GCF_000210295.1	Trypanosoma brucei gambiense DAL972	2009-10-14	Chromosome	22110721	9930	haploid	current
+GCA_000210295.1	Trypanosoma brucei gambiense DAL972	2009-10-14	Chromosome	22110721	9961	haploid	current
+GCA_000227395.2	Trypanosoma congolense IL3000	2011-08-12	Scaffold	18802389	6348	haploid	current
+GCF_003719485.1	Trypanosoma conorhini	2018-11-08	Scaffold	21137671	10321	haploid	current
+GCA_003719485.1	Trypanosoma conorhini	2018-11-08	Scaffold	21137671	10321	haploid	current
+GCF_000209065.1	Trypanosoma cruzi	2005-08-02	Scaffold	89612356	25210	unresolved-diploid	current
+GCA_000188675.2	Trypanosoma cruzi	2012-10-02	Contig	38589511	10876	haploid	current
+GCA_000209065.1	Trypanosoma cruzi	2005-08-02	Scaffold	89612356	25210	unresolved-diploid	current
+GCA_003177095.1	Trypanosoma cruzi	2018-05-30	Contig	87058484	29302	unresolved-diploid	current
+GCA_003177105.1	Trypanosoma cruzi	2018-05-30	Contig	53271887	19115	haploid	current
+GCA_003719155.1	Trypanosoma cruzi	2018-11-05	Scaffold	20565523	34344	diploid	current
+GCA_003719455.1	Trypanosoma cruzi	2018-11-08	Scaffold	23852162	13503	haploid	current
+GCA_013358655.1	Trypanosoma cruzi	2020-06-18	Scaffold	40788336	14352	haploid	current
+GCA_015033625.1	Trypanosoma cruzi	2020-11-03	Chromosome	45527284	18708	haploid	current
+GCA_015033655.1	Trypanosoma cruzi	2020-11-03	Chromosome	47195002	17651	haploid	current
+GCA_002219105.2	Trypanosoma cruzi cruzi	2017-09-15	Contig	50928259	22870	haploid	current
+GCA_000496795.1	Trypanosoma cruzi Dm28c	2013-11-13	Contig	27304309	11398	haploid	current
+GCA_000300495.1	Trypanosoma cruzi marinkellei	2012-10-01	Contig	34226154	10127	haploid	current
+GCF_001457755.1	Trypanosoma equiperdum	2016-12-15	Scaffold	26113307	9129	haploid	current
+GCA_001457755.2	Trypanosoma equiperdum	2016-12-15	Scaffold	26113307	9135	haploid	current
+GCF_000691245.1	Trypanosoma grayi	2014-05-15	Scaffold	20791447	10676	haploid	current
+GCA_000691245.1	Trypanosoma grayi	2014-05-15	Scaffold	20791447	10676	haploid	current
+GCF_022059095.1	Trypanosoma melophagium	2022-02-08	Contig	23303718	9756	haploid	current
+GCA_022059095.1	Trypanosoma melophagium	2022-02-08	Contig	23303718	9768	haploid	current
+GCF_003719475.1	Trypanosoma rangeli	2018-11-08	Scaffold	20977846	10589	haploid	current
+GCA_003719475.1	Trypanosoma rangeli	2018-11-08	Scaffold	20977846	10589	haploid	current
+GCA_000492115.1	Trypanosoma rangeli SC58	2013-10-30	Contig	15111138	7475	haploid	current
+GCF_002087225.1	Trypanosoma theileri	2017-04-12	Scaffold	25688935	11312	haploid	current
+GCA_002087225.1	Trypanosoma theileri	2017-04-12	Scaffold	25688935	11312	haploid	current
+GCA_021307395.1	Trypanosoma vivax	2021-12-28	Contig	67823889	17806	haploid	current
+GCA_019425475.1	Trypanosoma vivax	2021-07-30	Contig	23865041	10424	haploid	current
+GCA_000227375.1	Trypanosoma vivax Y486	2011-08-11	Contig	24779298	4122	haploid	current
